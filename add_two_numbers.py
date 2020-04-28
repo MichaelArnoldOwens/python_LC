@@ -9,30 +9,14 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     head = dummy
     carry = 0
     while l1 or l2:
+        if l1 == None:
+            l1 = ListNode(0)
+        if l2 == None:
+            l2 = ListNode(0)
         if l1 and l2:
             sum = l1.val + l2.val + carry
-            if sum > 9:
-                sum = sum - 10
-                carry = 1
-            else:
-                carry = 0
-            next = ListNode(sum)
-        elif l1:
-            sum = l1.val + carry
-            if sum > 9:
-                sum = sum - 10
-                carry = 1
-            else:
-                carry = 0
-            next = ListNode(sum)
-        elif l2:
-            sum = l2.val + carry
-            if sum > 9:
-                sum = sum - 10
-                carry = 1
-            else:
-                carry = 0
-            next = ListNode(sum)
+            carry = sum // 10
+            next = ListNode(sum % 10)
         dummy.next = next
         dummy = dummy.next
         if l1:
